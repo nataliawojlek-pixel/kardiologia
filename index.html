@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Materiały wideo – Gdy serce milknie przed wyrokiem sądu</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1B2A4A;
+    --red: #C0392B;
+    --light: #F4F6F9;
+    --white: #FFFFFF;
+    --muted: #6B7A99;
+    --border: #DDE3EC;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--light);
+    font-family: 'Source Sans 3', sans-serif;
+    color: var(--navy);
+    min-height: 100vh;
+  }
+
+  /* Header */
+  header {
+    background: var(--navy);
+    padding: 48px 24px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--red);
+  }
+  header .eyebrow {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #A8C4E0;
+    margin-bottom: 14px;
+  }
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 5vw, 36px);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.25;
+    max-width: 700px;
+    margin: 0 auto 16px;
+  }
+  header .subtitle {
+    font-size: 14px;
+    color: #A8C4E0;
+    font-weight: 300;
+    letter-spacing: 0.3px;
+  }
+  header .authors {
+    margin-top: 20px;
+    font-size: 13px;
+    color: #7A9CC4;
+    font-weight: 300;
+  }
+
+  /* Main */
+  main {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 20px 64px;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* Cards grid */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  .card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 8px rgba(27,42,74,0.06);
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(27,42,74,0.14);
+  }
+
+  .card-thumb {
+    background: var(--navy);
+    aspect-ratio: 16/9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .card-thumb::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #1B2A4A 0%, #2E4A7A 100%);
+  }
+  .play-btn {
+    position: relative;
+    width: 52px;
+    height: 52px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba(255,255,255,0.4);
+    transition: background 0.2s, transform 0.2s;
+  }
+  .card:hover .play-btn {
+    background: var(--red);
+    border-color: var(--red);
+    transform: scale(1.08);
+  }
+  .play-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: white;
+    margin-left: 3px;
+  }
+  .card-num {
+    position: absolute;
+    top: 10px;
+    left: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: rgba(255,255,255,0.5);
+    font-family: 'Source Sans 3', sans-serif;
+  }
+
+  .card-body {
+    padding: 20px 20px 22px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.35;
+    color: var(--navy);
+  }
+  .card-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.55;
+    font-weight: 300;
+    flex: 1;
+  }
+  .card-cta {
+    margin-top: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--red);
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .card-cta svg {
+    width: 14px;
+    height: 14px;
+    stroke: var(--red);
+    fill: none;
+    transition: transform 0.2s;
+  }
+  .card:hover .card-cta svg {
+    transform: translateX(3px);
+  }
+
+  /* TODO badge */
+  .todo-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    background: #FFF3CD;
+    color: #856404;
+    border: 1px solid #FFE08A;
+    border-radius: 4px;
+    padding: 2px 7px;
+    margin-bottom: 4px;
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 28px 20px 40px;
+    font-size: 12px;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+  }
+  footer strong {
+    color: var(--navy);
+    font-weight: 600;
+  }
+
+  @media (max-width: 480px) {
+    .cards { grid-template-columns: 1fr; }
+    header { padding: 36px 20px 32px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <p class="eyebrow">Konferencja Kardiologiczna 2026 &nbsp;·&nbsp; Opis przypadku</p>
+  <h1>Gdy serce milknie przed wyrokiem sądu</h1>
+  <p class="subtitle">Pozaszpitalne zatrzymanie krążenia – materiały wideo</p>
+  <p class="authors">N. Feliniak · M. Guzik · M. Garus · P. Gajewski · R. Tymków · S. Nawrocka-Millward · R. Zymlński<br>
+  Uniwersytecki Szpital Kliniczny im. J. Mikulicza-Radeckiego we Wrocławiu</p>
+</header>
+
+<main>
+  <p class="section-label">Wybierz nagranie</p>
+
+  <div class="cards">
+
+    <!-- FILM 1 – podmień href="LINK_DO_FILMU_1" -->
+    <a class="card" href="LINK_DO_FILMU_1" target="_blank" rel="noopener">
+      <div class="card-thumb">
+        <span class="card-num">01</span>
+        <div class="play-btn">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="todo-badge">Dodaj link</span>
+        <p class="card-title">Tytuł filmu 1</p>
+        <p class="card-desc">Krótki opis czego dotyczy to nagranie – np. zapis z AED, koronarografia itp.</p>
+        <p class="card-cta">Obejrzyj
+          <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </p>
+      </div>
+    </a>
+
+    <!-- FILM 2 – podmień href="LINK_DO_FILMU_2" -->
+    <a class="card" href="LINK_DO_FILMU_2" target="_blank" rel="noopener">
+      <div class="card-thumb">
+        <span class="card-num">02</span>
+        <div class="play-btn">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="todo-badge">Dodaj link</span>
+        <p class="card-title">Tytuł filmu 2</p>
+        <p class="card-desc">Krótki opis czego dotyczy to nagranie.</p>
+        <p class="card-cta">Obejrzyj
+          <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </p>
+      </div>
+    </a>
+
+    <!-- FILM 3 – podmień href="LINK_DO_FILMU_3" -->
+    <a class="card" href="LINK_DO_FILMU_3" target="_blank" rel="noopener">
+      <div class="card-thumb">
+        <span class="card-num">03</span>
+        <div class="play-btn">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="todo-badge">Dodaj link</span>
+        <p class="card-title">Tytuł filmu 3</p>
+        <p class="card-desc">Krótki opis czego dotyczy to nagranie.</p>
+        <p class="card-cta">Obejrzyj
+          <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </p>
+      </div>
+    </a>
+
+    <!-- FILM 4 – podmień href="LINK_DO_FILMU_4" -->
+    <a class="card" href="LINK_DO_FILMU_4" target="_blank" rel="noopener">
+      <div class="card-thumb">
+        <span class="card-num">04</span>
+        <div class="play-btn">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="todo-badge">Dodaj link</span>
+        <p class="card-title">Tytuł filmu 4</p>
+        <p class="card-desc">Krótki opis czego dotyczy to nagranie.</p>
+        <p class="card-cta">Obejrzyj
+          <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </p>
+      </div>
+    </a>
+
+  </div>
+</main>
+
+<footer>
+  <strong>Uniwersytecki Szpital Kliniczny im. Jana Mikulicza-Radeckiego we Wrocławiu</strong><br>
+  Konferencja Kardiologiczna 2026
+</footer>
+
+</body>
+</html>
